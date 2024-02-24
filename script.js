@@ -2,9 +2,9 @@
 //var redMnstr = 8
 //var blueMnstr = 9
 var amoeba_red_dotted = 3
-var amoeba_red_stripped = 3
-var amoeba_purple_dotted = 3
-var amoeba_purple_stripped = 3
+var amoeba_red_stripped = 2
+var amoeba_purple_dotted = 2
+var amoeba_purple_stripped = 2
 
 var slug_red_dotted = 2
 var slug_red_stripped = 2
@@ -15,6 +15,7 @@ var vnt = 3
 var str = 1
 
 var chng = 0
+
 var chngAnimal = 1
 var chngColor = 1
 var chngPattern = 1
@@ -23,6 +24,101 @@ var chngPattern = 1
 var tiles = []
 var monsters = ["amoeba_purple_dotted", "amoeba_purple_stripped", "amoeba_red_dotted", "amoeba_red_stripped",
     "slug_purple_dotted", "slug_purple_stripped", "slug_red_dotted", "slug_red_stripped"]
+
+var monstersNew = [
+    {
+        type: "monster",
+        name: "amoeba_purple_dotted",
+        animal: "amoeba",
+        color: "purple",
+        pattern: "dotted"
+    },
+    {
+        type: "monster",
+        name: "amoeba_purple_stripped",
+        animal: "amoeba",
+        color: "purple",
+        pattern: "stripped"
+    },
+    {
+        type: "monster",
+        name: "amoeba_red_dotted",
+        animal: "amoeba",
+        color: "purple",
+        pattern: "dotted"
+    },
+    {
+        type: "monster",
+        name: "amoeba_red_stripped",
+        animal: "amoeba",
+        color: "purple",
+        pattern: "stripped"
+    },
+    {
+        type: "monster",
+        name: "slug_purple_dotted",
+        animal: "slug",
+        color: "purple",
+        pattern: "dotted"
+    },
+    {
+        type: "monster",
+        name: "slug_purple_stripped",
+        animal: "slug",
+        color: "purple",
+        pattern: "stripped"
+    },
+    {
+        type: "monster",
+        name: "slug_red_dotted",
+        animal: "slug",
+        color: "purple",
+        pattern: "dotted"
+    },
+    {
+        type: "monster",
+        name: "slug_red_stripped",
+        animal: "slug",
+        color: "purple",
+        pattern: "stripped"
+    },
+    {
+        type: "action",
+        name: "str",
+        animal: "-",
+        color: "-",
+        pattern: "-"
+    },
+    {
+        type: "action",
+        name: "vnt",
+        animal: "-",
+        color: "-",
+        pattern: "-"
+    },
+    {
+        type: "action",
+        name: "chng_animal",
+        animal: "-",
+        color: "-",
+        pattern: "-"
+    },
+    {
+        type: "action",
+        name: "chng_color",
+        animal: "-",
+        color: "-",
+        pattern: "-"
+    },
+    {
+        type: "action",
+        name: "chng_pattern",
+        animal: "-",
+        color: "-",
+        pattern: "-"
+    },
+    
+]
 
 let currentMonster
 let tileToFind
@@ -46,59 +142,60 @@ function fillList() {
 
     //amoeba
     for (let index = 0; index < amoeba_purple_dotted; index++) {
-        tiles.push("amoeba_purple_dotted")
+        tiles.push(monstersNew[0])
 
     }
 
     for (let index = 0; index < amoeba_purple_stripped; index++) {
-        tiles.push("amoeba_purple_stripped")
-
+        tiles.push(monstersNew[1])
     }
 
     for (let index = 0; index < amoeba_red_dotted; index++) {
-        tiles.push("amoeba_red_dotted")
+        tiles.push(monstersNew[2])
 
     }
 
     for (let index = 0; index < amoeba_red_stripped; index++) {
-        tiles.push("amoeba_red_stripped")
+        tiles.push(monstersNew[3])
 
     }
 
     //slug
 
     for (let index = 0; index < slug_purple_dotted; index++) {
-        tiles.push("slug_purple_dotted")
+        tiles.push(monstersNew[4])
 
     }
 
     for (let index = 0; index < slug_purple_stripped; index++) {
-        tiles.push("slug_purple_stripped")
+        tiles.push(monstersNew[5])
 
     }
 
     for (let index = 0; index < slug_red_dotted; index++) {
-        tiles.push("slug_red_dotted")
+        tiles.push(monstersNew[6])
 
     }
 
     for (let index = 0; index < slug_red_stripped; index++) {
-        tiles.push("slug_red_stripped")
+        tiles.push(monstersNew[7])
 
     }
 
-    for (let index = 0; index < vnt; index++) {
-        tiles.push("vnt")
-
-    }
     for (let index = 0; index < str; index++) {
-        tiles.push("str")
+        tiles.push(monstersNew[8])
 
     }
-    for (let index = 0; index < chng; index++) {
-        tiles.push("chng")
+    
+    for (let index = 0; index < vnt; index++) {
+        tiles.push(monstersNew[9])
 
     }
+
+    //change
+    tiles.push(monstersNew[10])
+    tiles.push(monstersNew[11])
+    tiles.push(monstersNew[12])
 
     for (var i = tiles.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -112,12 +209,15 @@ function fillList() {
 }
 
 function generateTiles() {
-
     for (let index = 0; index < 24; index++) {
-        if ((tiles[index] != "chng") && (tiles[index] != "vnt") && (tiles[index] != "str")) {
+        /* if ((tiles[index] != "chng") && (tiles[index] != "vnt") && (tiles[index] != "str")) {
             document.getElementById(index).classList.add(`monster`)
-        }
-        document.getElementById(index).classList.add(`${tiles[index]}`)
+        } */
+        
+        document.getElementById(index).classList.add(`${tiles[index].name}`)
+        document.getElementById(index).classList.add(`${tiles[index].animal}`)
+        document.getElementById(index).classList.add(`${tiles[index].color}`)
+        document.getElementById(index).classList.add(`${tiles[index].pattern}`)
     }
     generateEvents()
 }
@@ -125,16 +225,16 @@ function generateTiles() {
 function generateEvents() {
     for (let index = 0; index < 24; index++) {
         let tl = document.getElementById(index)
-        if (tl.classList.contains("monster")) {
-            tl.addEventListener("click", (event) => {
-                if (event.target.id == tileToFind) {
-                    document.getElementById("score").innerHTML = "Talált!"
-                } else {
-                    document.getElementById("score").innerHTML = "Nem talált!"
-                }
-                //clickTile(event.target.id)
-            })
-        }
+        /* if (tl.classList.contains("monster")) {
+        } */
+        tl.addEventListener("click", (event) => {
+            if (event.target.id == tileToFind) {
+                document.getElementById("score").innerHTML = "Talált!"
+            } else {
+                document.getElementById("score").innerHTML = "Nem talált!"
+            }
+            //clickTile(event.target.id)
+        })
     }
 }
 
@@ -166,7 +266,7 @@ function gameLogic() {
     while (!monsterFound) {
         if (currentIndex >= tiles.length) {
             currentIndex = 0
-            
+
         }
 
         currentTile = tiles[currentIndex]
