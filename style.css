@@ -43,6 +43,50 @@ main {
     background-image: url("change.png");
 }
 
+.amoeba_purple_dotted {
+    background-image: url("amoeba_purple_dotted.png");
+}
+
+.amoeba_purple_stripped {
+    background-image: url("amoeba_purple_stripped.png");
+}
+
+.amoeba_red_dotted {
+    background-image: url("amoeba_red_dotted.png");
+}
+
+.amoeba_red_stripped {
+    background-image: url("amoeba_red_stripped.png");
+}
+
+.slug_purple_dotted {
+    background-image: url("slug_purple_dotted.png");
+}
+
+.slug_purple_stripped {
+    background-image: url("slug_purple_stripped.png");
+}
+
+.slug_red_dotted {
+    background-image: url("slug_red_dotted.png");
+}
+
+.slug_red_stripped {
+    background-image: url("slug_red_stripped.png");
+}
+
+.change_animal {
+    background-image: url("change_animal.png");
+}
+
+.change_color {
+    background-image: url("change_color.png");
+}
+
+.change_pattern {
+    background-image: url("change_pattern.png");
+}
+
 .invisible {
     border: 0px;
 }

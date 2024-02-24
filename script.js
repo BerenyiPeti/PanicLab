@@ -1,10 +1,27 @@
 //16 szörny, 3 szellőző, 3 start, 3 váltó
-var redMnstr = 8
-var blueMnstr = 9
+//var redMnstr = 8
+//var blueMnstr = 9
+var amoeba_red_dotted = 3
+var amoeba_red_stripped = 3
+var amoeba_purple_dotted = 3
+var amoeba_purple_stripped = 3
+
+var slug_red_dotted = 2
+var slug_red_stripped = 2
+var slug_purple_dotted = 2
+var slug_purple_stripped = 2
+
 var vnt = 3
 var str = 1
-var chng = 3
+
+var chngAnimal = 1
+var chngColor = 1
+var chngPattern = 1
+
+
 var tiles = []
+var monsters = ["amoeba_purple_dotted", "amoeba_purple_stripped", "amoeba_red_dotted", "amoeba_red_stripped",
+    "slug_purple_dotted", "slug_purple_stripped", "slug_red_dotted", "slug_red_stripped"]
 
 let currentMonster
 let tileToFind
@@ -17,14 +34,58 @@ function init() {
 }
 
 function fillList() {
-    for (let index = 0; index < redMnstr; index++) {
+    /* for (let index = 0; index < redMnstr; index++) {
         tiles.push("redMnstr")
 
     }
     for (let index = 0; index < blueMnstr; index++) {
         tiles.push("blueMnstr")
 
+    } */
+
+    //amoeba
+    for (let index = 0; index < amoeba_purple_dotted; index++) {
+        tiles.push("amoeba_purple_dotted")
+
     }
+
+    for (let index = 0; index < amoeba_purple_stripped; index++) {
+        tiles.push("amoeba_purple_stripped")
+
+    }
+
+    for (let index = 0; index < amoeba_red_dotted; index++) {
+        tiles.push("amoeba_red_dotted")
+
+    }
+
+    for (let index = 0; index < amoeba_red_stripped; index++) {
+        tiles.push("amoeba_red_stripped")
+
+    }
+
+    //slug
+
+    for (let index = 0; index < slug_purple_dotted; index++) {
+        tiles.push("slug_purple_dotted")
+
+    }
+
+    for (let index = 0; index < slug_purple_stripped; index++) {
+        tiles.push("slug_purple_stripped")
+
+    }
+
+    for (let index = 0; index < slug_red_dotted; index++) {
+        tiles.push("slug_red_dotted")
+
+    }
+
+    for (let index = 0; index < slug_red_stripped; index++) {
+        tiles.push("slug_red_stripped")
+
+    }
+
     for (let index = 0; index < vnt; index++) {
         tiles.push("vnt")
 
@@ -46,26 +107,13 @@ function fillList() {
     }
 
     //tiles.push("str")
-
-
     console.log(tiles);
 }
 
 function generateTiles() {
-    /* for (let index = 0; index < mnstr; index++) {
-        container.innerHTML += `<div class="tile monster" id="${index}">${index}</div>`
-    }
-    for (let index = 16; index < 19; index++) {
-        container.innerHTML += `<div class="tile vent" id="${index}">${index}</div>`
-    }
-    for (let index = 19; index < 22; index++) {
-        container.innerHTML += `<div class="tile start" id="${index}">${index}</div>`
-    }
-    for (let index = 22; index < 25; index++) {
-        container.innerHTML += `<div class="tile change" id="${index}">${index}</div>`
-    } */
+
     for (let index = 0; index < 24; index++) {
-        if (tiles[index] == "redMnstr" || tiles[index] == "blueMnstr") {
+        if ((tiles[index] != "chng") && (tiles[index] != "vnt") && (tiles[index] != "str")) {
             document.getElementById(index).classList.add(`monster`)
         }
         document.getElementById(index).classList.add(`${tiles[index]}`)
@@ -104,6 +152,7 @@ function gameLogic() {
     let monsterFound = false
     let inVent = false
 
+
     //megkeresi a startot
     for (let index = 0; index < tiles.length; index++) {
         if (tiles[index] == "str") {
@@ -116,6 +165,7 @@ function gameLogic() {
     while (!monsterFound) {
         if (currentIndex >= tiles.length) {
             currentIndex = 0
+            
         }
 
         currentTile = tiles[currentIndex]
@@ -149,17 +199,14 @@ function gameLogic() {
 }
 
 function rollMonster() {
-    /* let t = 0
-     while (!(currentMonster == "redMnstr" || currentMonster == "blueMnstr") && t < 25) {
-        currentMonster = tiles[t]
-        t++
-
-    } */
-    if (Math.random() < 0.5) {
+    /* if (Math.random() < 0.5) {
         currentMonster = "redMnstr"
     } else {
         currentMonster = "blueMnstr"
-    }
+    } */
+
+    currentMonster = monsters[Math.floor(Math.random() * monsters.length)]
+    console.log(currentMonster);
 
     document.getElementById("rolledMonster").innerHTML = currentMonster
     console.log("choosed monster:", currentMonster);
