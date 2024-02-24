@@ -14,6 +14,7 @@ var slug_purple_stripped = 2
 var vnt = 3
 var str = 1
 
+var chng = 0
 var chngAnimal = 1
 var chngColor = 1
 var chngPattern = 1
