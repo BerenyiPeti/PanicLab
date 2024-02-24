@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile {
+    border: 1px solid black;
+}
+
+#gameArea {
+    margin: auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(7, 14vmin);
+    grid-template-rows: repeat(7, 14vmin);
+
+}
+
+.redMnstr {
+    background-color: red;
+}
+
+.blueMnstr {
+    background-color: blue;
+}
+
+.vnt {
+    background-image: url("vent.png");
+}
+
+.str {
+    background-image: url("start.png");
+}
+
+.chng {
+    background-image: url("change.png");
+}
+
+.invisible {
+    border: 0px;
+}
+
+.monster {
+    cursor: pointer;
+}
+
+
+/* .end-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.middle-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.end-row, .middle-row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+} */
