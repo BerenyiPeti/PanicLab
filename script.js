@@ -2,7 +2,7 @@
 //var redMnstr = 8
 //var blueMnstr = 9
 var amoeba_red_dotted = 3
-var amoeba_red_stripped = 5
+var amoeba_red_stripped = 2
 var amoeba_purple_dotted = 2
 var amoeba_purple_stripped = 2
 
@@ -11,14 +11,14 @@ var slug_red_stripped = 2
 var slug_purple_dotted = 2
 var slug_purple_stripped = 2
 
-var vnt = 0
+var vnt = 3
 var str = 1
 
 var chng = 0
 
-var chngAnimal = 3
-var chngColor = 0
-var chngPattern = 0
+var chng_animal = 1   
+var chng_color = 1
+var chng_pattern = 1
 
 
 var tiles = []
@@ -150,11 +150,25 @@ function fillList() {
     }
 
     //change
-    tiles.push("chng_animal")
-    tiles.push("chng_animal")
-    tiles.push("chng_animal")
-    //tiles.push("chng_color")
-    //tiles.push("chng_pattern")
+    for (let index = 0; index < chng_animal; index++) {
+        tiles.push("chng_animal")
+
+    }
+
+    for (let index = 0; index < chng_color; index++) {
+        tiles.push("chng_color")
+
+    }
+
+    for (let index = 0; index < chng_pattern; index++) {
+        tiles.push("chng_pattern")
+
+    }
+    /* tiles.push("chng_animal")
+    tiles.push("chng_color")
+    tiles.push("chng_color")
+    tiles.push("chng_color")
+    tiles.push("chng_pattern") */
 
     //let index = monstersNew.findIndex(x => x.animal == "amoeba" && x.color == "red" && x.pattern == "dotted");
 
@@ -169,6 +183,21 @@ function fillList() {
 
     //tiles.push("str")
     console.log(tiles);
+}
+
+function newGame() {
+    console.log("current monster newgame: ", currentMonster);
+    tiles = []
+    for (let index = 0; index < 24; index++) {
+        document.getElementById(index).className = "tile"
+    }
+    document.getElementById("rolledMonster").innerHTML = `<img src="unknown_monster.png" alt="monster" id="rolledMonster">`
+    document.getElementById("score").innerHTML = "-"
+    fillList()
+    generateTiles()
+    rollMonster()
+    gameLogic()
+    console.log("current monster newgame: ", currentMonster);
 }
 
 function generateTiles() {
@@ -248,12 +277,19 @@ function gameLogic() {
             else if (currentTile == "chng_animal") {
                 changeAnimal(currentMonster, "animal")
             }
+            else if (currentTile == "chng_color") {
+                changeAnimal(currentMonster, "color")
+            }
+            else if (currentTile == "chng_pattern") {
+                changeAnimal(currentMonster, "pattern")
+            }
+
         }
 
         currentIndex++
     }
 
-    //console.log("keresendő tile: ", tileToFind);
+    console.log("keresendő tile: ", tileToFind);
 }
 
 function changeAnimal(monster, toChange) {
@@ -262,10 +298,10 @@ function changeAnimal(monster, toChange) {
     let currentAnimal = monstersNew[index].animal
     let currentColor = monstersNew[index].color
     let currentPattern = monstersNew[index].pattern
-    
+
     if (toChange == "animal") {
         let newAnimal = ""
-        
+
         if (currentAnimal == "amoeba") {
             newAnimal = "slug"
         } else if (currentAnimal == "slug") {
@@ -277,16 +313,32 @@ function changeAnimal(monster, toChange) {
         console.log(newAnimal, currentColor, currentPattern); */
         currentMonster = monstersNew[index].name
         console.log("erre változott (már ha változott): ", currentMonster);
-    } 
+    }
     else if (toChange == "color") {
         let newColor = ""
 
         if (currentColor == "purple") {
-            newColor = "slug"
-        } else if (currentAnimal == "slug") {
-            newAnimal = "amoeba"
+            newColor = "red"
+        } else if (currentColor == "red") {
+            newColor = "purple"
         }
-        index = monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern);
+
+        index = monstersNew.findIndex(x => x.animal == currentAnimal && x.color == newColor && x.pattern == currentPattern);
+        console.log(monstersNew[index]);
+        console.log(currentAnimal, newColor, currentPattern);
+        currentMonster = monstersNew[index].name
+        console.log("erre változott (már ha változott): ", currentMonster);
+    }
+    else if (toChange == "pattern") {
+        let newPattern = ""
+
+        if (currentPattern == "dotted") {
+            newPattern = "stripped"
+        } else if (currentPattern == "stripped") {
+            newPattern = "dotted"
+        }
+
+        index = monstersNew.findIndex(x => x.animal == currentAnimal && x.color == currentColor && x.pattern == newPattern);
         /* console.log(monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern));
         console.log(monstersNew[index]);
         console.log(newAnimal, currentColor, currentPattern); */
@@ -299,16 +351,12 @@ function changeAnimal(monster, toChange) {
 
 
 function rollMonster() {
-    /* if (Math.random() < 0.5) {
-        currentMonster = "redMnstr"
-    } else {
-        currentMonster = "blueMnstr"
-    } */
 
     currentMonster = monsters[Math.floor(Math.random() * monsters.length)]
     //console.log(currentMonster);
 
-    document.getElementById("rolledMonster").innerHTML = currentMonster
+    document.getElementById("rolledMonster").src = `${currentMonster}.png`
+    document.getElementById("score").innerHTML = "-"
     //console.log("choosed monster:", currentMonster);
     gameLogic()
 }

@@ -95,6 +95,14 @@ main {
     cursor: pointer;
 }
 
+#rolledMonster {
+    width: 150px;
+}
+
+button {
+    cursor: pointer;
+}
+
 
 /* .end-row {
     display: flex;
