@@ -2,7 +2,7 @@
 //var redMnstr = 8
 //var blueMnstr = 9
 var amoeba_red_dotted = 3
-var amoeba_red_stripped = 2
+var amoeba_red_stripped = 5
 var amoeba_purple_dotted = 2
 var amoeba_purple_stripped = 2
 
@@ -11,14 +11,14 @@ var slug_red_stripped = 2
 var slug_purple_dotted = 2
 var slug_purple_stripped = 2
 
-var vnt = 3
+var vnt = 0
 var str = 1
 
 var chng = 0
 
-var chngAnimal = 1
-var chngColor = 1
-var chngPattern = 1
+var chngAnimal = 3
+var chngColor = 0
+var chngPattern = 0
 
 
 var tiles = []
@@ -27,97 +27,54 @@ var monsters = ["amoeba_purple_dotted", "amoeba_purple_stripped", "amoeba_red_do
 
 var monstersNew = [
     {
-        type: "monster",
         name: "amoeba_purple_dotted",
         animal: "amoeba",
         color: "purple",
         pattern: "dotted"
     },
     {
-        type: "monster",
         name: "amoeba_purple_stripped",
         animal: "amoeba",
         color: "purple",
         pattern: "stripped"
     },
     {
-        type: "monster",
         name: "amoeba_red_dotted",
         animal: "amoeba",
-        color: "purple",
+        color: "red",
         pattern: "dotted"
     },
     {
-        type: "monster",
         name: "amoeba_red_stripped",
         animal: "amoeba",
-        color: "purple",
+        color: "red",
         pattern: "stripped"
     },
     {
-        type: "monster",
         name: "slug_purple_dotted",
         animal: "slug",
         color: "purple",
         pattern: "dotted"
     },
     {
-        type: "monster",
         name: "slug_purple_stripped",
         animal: "slug",
         color: "purple",
         pattern: "stripped"
     },
     {
-        type: "monster",
         name: "slug_red_dotted",
         animal: "slug",
-        color: "purple",
+        color: "red",
         pattern: "dotted"
     },
     {
-        type: "monster",
         name: "slug_red_stripped",
         animal: "slug",
-        color: "purple",
+        color: "red",
         pattern: "stripped"
-    },
-    {
-        type: "action",
-        name: "str",
-        animal: "-",
-        color: "-",
-        pattern: "-"
-    },
-    {
-        type: "action",
-        name: "vnt",
-        animal: "-",
-        color: "-",
-        pattern: "-"
-    },
-    {
-        type: "action",
-        name: "chng_animal",
-        animal: "-",
-        color: "-",
-        pattern: "-"
-    },
-    {
-        type: "action",
-        name: "chng_color",
-        animal: "-",
-        color: "-",
-        pattern: "-"
-    },
-    {
-        type: "action",
-        name: "chng_pattern",
-        animal: "-",
-        color: "-",
-        pattern: "-"
-    },
-    
+    }
+
 ]
 
 let currentMonster
@@ -142,60 +99,66 @@ function fillList() {
 
     //amoeba
     for (let index = 0; index < amoeba_purple_dotted; index++) {
-        tiles.push(monstersNew[0])
+        tiles.push(monstersNew[0].name)
 
     }
 
     for (let index = 0; index < amoeba_purple_stripped; index++) {
-        tiles.push(monstersNew[1])
+        tiles.push(monstersNew[1].name)
     }
 
     for (let index = 0; index < amoeba_red_dotted; index++) {
-        tiles.push(monstersNew[2])
+        tiles.push(monstersNew[2].name)
 
     }
 
     for (let index = 0; index < amoeba_red_stripped; index++) {
-        tiles.push(monstersNew[3])
+        tiles.push(monstersNew[3].name)
 
     }
 
     //slug
 
     for (let index = 0; index < slug_purple_dotted; index++) {
-        tiles.push(monstersNew[4])
+        tiles.push(monstersNew[4].name)
 
     }
 
     for (let index = 0; index < slug_purple_stripped; index++) {
-        tiles.push(monstersNew[5])
+        tiles.push(monstersNew[5].name)
 
     }
 
     for (let index = 0; index < slug_red_dotted; index++) {
-        tiles.push(monstersNew[6])
+        tiles.push(monstersNew[6].name)
 
     }
 
     for (let index = 0; index < slug_red_stripped; index++) {
-        tiles.push(monstersNew[7])
+        tiles.push(monstersNew[7].name)
 
     }
 
     for (let index = 0; index < str; index++) {
-        tiles.push(monstersNew[8])
+        tiles.push("str")
 
     }
-    
+
     for (let index = 0; index < vnt; index++) {
-        tiles.push(monstersNew[9])
+        tiles.push("vnt")
 
     }
 
     //change
-    tiles.push(monstersNew[10])
-    tiles.push(monstersNew[11])
-    tiles.push(monstersNew[12])
+    tiles.push("chng_animal")
+    tiles.push("chng_animal")
+    tiles.push("chng_animal")
+    //tiles.push("chng_color")
+    //tiles.push("chng_pattern")
+
+    //let index = monstersNew.findIndex(x => x.animal == "amoeba" && x.color == "red" && x.pattern == "dotted");
+
+    console.log(monstersNew.findIndex(x => x.animal == "amoeba" && x.color == "purple" && x.pattern == "dotted"));
 
     for (var i = tiles.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -213,11 +176,9 @@ function generateTiles() {
         /* if ((tiles[index] != "chng") && (tiles[index] != "vnt") && (tiles[index] != "str")) {
             document.getElementById(index).classList.add(`monster`)
         } */
-        
-        document.getElementById(index).classList.add(`${tiles[index].name}`)
-        document.getElementById(index).classList.add(`${tiles[index].animal}`)
-        document.getElementById(index).classList.add(`${tiles[index].color}`)
-        document.getElementById(index).classList.add(`${tiles[index].pattern}`)
+
+        document.getElementById(index).classList.add(`${tiles[index]}`)
+
     }
     generateEvents()
 }
@@ -261,7 +222,7 @@ function gameLogic() {
         }
     }
 
-    console.log("kezdő mező: ", currentIndex);
+    //console.log("kezdő mező: ", currentIndex);
 
     while (!monsterFound) {
         if (currentIndex >= tiles.length) {
@@ -284,20 +245,58 @@ function gameLogic() {
                 monsterFound = true
                 tileToFind = currentIndex
             }
-            else if (currentTile == "chng") {
-                if (currentMonster == "redMnstr") {
-                    currentMonster = "blueMnstr"
-                } else {
-                    currentMonster = "redMnstr"
-                }
+            else if (currentTile == "chng_animal") {
+                changeAnimal(currentMonster, "animal")
             }
         }
 
         currentIndex++
     }
 
-    console.log("keresendő tile: ", tileToFind);
+    //console.log("keresendő tile: ", tileToFind);
 }
+
+function changeAnimal(monster, toChange) {
+    let index = monstersNew.findIndex(x => x.name === monster);
+
+    let currentAnimal = monstersNew[index].animal
+    let currentColor = monstersNew[index].color
+    let currentPattern = monstersNew[index].pattern
+    
+    if (toChange == "animal") {
+        let newAnimal = ""
+        
+        if (currentAnimal == "amoeba") {
+            newAnimal = "slug"
+        } else if (currentAnimal == "slug") {
+            newAnimal = "amoeba"
+        }
+        index = monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern);
+        /* console.log(monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern));
+        console.log(monstersNew[index]);
+        console.log(newAnimal, currentColor, currentPattern); */
+        currentMonster = monstersNew[index].name
+        console.log("erre változott (már ha változott): ", currentMonster);
+    } 
+    else if (toChange == "color") {
+        let newColor = ""
+
+        if (currentColor == "purple") {
+            newColor = "slug"
+        } else if (currentAnimal == "slug") {
+            newAnimal = "amoeba"
+        }
+        index = monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern);
+        /* console.log(monstersNew.findIndex(x => x.animal == newAnimal && x.color == currentColor && x.pattern == currentPattern));
+        console.log(monstersNew[index]);
+        console.log(newAnimal, currentColor, currentPattern); */
+        currentMonster = monstersNew[index].name
+        console.log("erre változott (már ha változott): ", currentMonster);
+    }
+
+}
+
+
 
 function rollMonster() {
     /* if (Math.random() < 0.5) {
@@ -307,9 +306,9 @@ function rollMonster() {
     } */
 
     currentMonster = monsters[Math.floor(Math.random() * monsters.length)]
-    console.log(currentMonster);
+    //console.log(currentMonster);
 
     document.getElementById("rolledMonster").innerHTML = currentMonster
-    console.log("choosed monster:", currentMonster);
+    //console.log("choosed monster:", currentMonster);
     gameLogic()
 }
